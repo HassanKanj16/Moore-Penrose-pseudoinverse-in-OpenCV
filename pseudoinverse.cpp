@@ -15,10 +15,10 @@ Mat pseudoInverse(Mat src){
   SVDecomp(src, S, U, Vt, SVD::FULL_UV);
   
   double max;
-	minMaxIdx(S, 0, &max);
+  minMaxIdx(S, 0, &max);
 
-	double cutoff = pow(10, -15) * max;
-	threshold(S, S, cutoff, 0, THRESH_TOZERO);
+  double cutoff = pow(10, -15) * max;
+  threshold(S, S, cutoff, 0, THRESH_TOZERO);
 
   //S+, transpose and element-wise reciprocal of S
   Mat diagonalS = Mat::zeros(rows, columns, CV_32FC1);
