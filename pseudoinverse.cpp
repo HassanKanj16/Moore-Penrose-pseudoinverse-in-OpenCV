@@ -23,7 +23,12 @@ Mat pseudoInverse(Mat src){
   //S+, transpose and element-wise reciprocal of S
   Mat diagonalS = Mat::zeros(rows, columns, CV_32FC1);
   for (int i = 0; i < S.rows; i++) {
-    diagonalS.at<float>(i, i) = 1/S.at<float>(i);
+    float val = S.at<float>(i);
+    
+    if (val)
+      val = 1/val;
+    
+    diagonalS.at<float>(i, i) = val;
   }
 
   //V* = Vt therefore A+ = V x S+ x Ut
